@@ -21,7 +21,6 @@ const ContactForm = () => {
       ? alert(`${name} is already in contacts.`)
       : dispatch(
           addContact({
-            id: nanoid(),
             name,
             phone,
           })
