@@ -2,11 +2,11 @@ import { FilterStyled } from './styled';
 import { nanoid } from '@reduxjs/toolkit';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeFilter } from '../../redux/filterSlice';
-import { getFilter } from '../../redux/selectors';
+import { selectFilter } from '../../redux/selectors';
 
 const Filter = () => {
   const filterInputId = nanoid();
-  const filter = useSelector(getFilter);
+  const filter = useSelector(selectFilter);
   const dispatch = useDispatch();
 
   const handleFilter = event => {

@@ -1,19 +1,19 @@
 import { ContactFormStyled } from './styled';
 import { nanoid } from '@reduxjs/toolkit';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from '../../redux/contactsSlice';
-import { getContacts } from '../../redux/selectors';
+import { addContact } from '../../redux/operations';
+import { selectContacts } from '../../redux/selectors';
 
 const ContactForm = () => {
   const nameInputId = nanoid();
-  const numberInputId = nanoid();
-  const contacts = useSelector(getContacts);
+  const phoneInputId = nanoid();
+  const contacts = useSelector(selectContacts);
   const dispatch = useDispatch();
 
   const handleFormSubmit = event => {
     event.preventDefault();
     const name = event.target.elements.name.value;
-    const number = event.target.elements.number.value;
+    const phone = event.target.elements.phone.value;
     event.target.reset();
     const nameContacts = contacts.map(contact => contact.name.toLowerCase());
 
@@ -23,7 +23,7 @@ const ContactForm = () => {
           addContact({
             id: nanoid(),
             name,
-            number,
+            phone,
           })
         );
   };
@@ -40,11 +40,11 @@ const ContactForm = () => {
         autoComplete="off"
         required
       />
-      <label htmlFor={numberInputId}>Number</label>
+      <label htmlFor={phoneInputId}>Number</label>
       <input
         type="tel"
-        name="number"
-        id={numberInputId}
+        name="phone"
+        id={phoneInputId}
         pattern="\+?\d{1,4}?[\-.\s]?\(?\d{1,3}?\)?[\-.\s]?\d{1,4}[\-.\s]?\d{1,4}[\-.\s]?\d{1,9}"
         title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
         autoComplete="off"
